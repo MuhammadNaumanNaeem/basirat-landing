@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Basirat QR Scanner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #0B2A6B;
+      color: white;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    #reader {
+      width: 300px;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #00C896;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Basirat QR Scanner</h1>
+  <p>Scan QR using camera</p>
+
+  <div id="reader"></div>
+
+  <p>Result:</p>
+  <a id="result" target="_blank"></a>
+
+  <script>
+    function onScanSuccess(decodedText) {
+      document.getElementById("result").innerText = decodedText;
+      document.getElementById("result").href = decodedText;
+    }
+
+    const html5QrCode = new Html5Qrcode("reader");
+
+    Html5QrCode.getCameras().then(devices => {
+      if (devices && devices.length) {
+        html5QrCode.start(
+          devices[0].id,
+          { fps: 10, qrbox: 250 },
+          onScanSuccess
+        );
+      }
+    });
+  </script>
+
+</body>
+</html>
