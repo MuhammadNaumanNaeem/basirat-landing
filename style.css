@@ -86,4 +86,32 @@ p {
     font-size: 16px;
     padding: 16px;
   }
+  .qr-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.1);
+  padding: 12px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  width: 120px;
+}
+
+.qr-float img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.qr-float p {
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+
+/* hide on mobile */
+@media (max-width: 768px) {
+  .qr-float {
+    display: none;
+  }
+}
 }
